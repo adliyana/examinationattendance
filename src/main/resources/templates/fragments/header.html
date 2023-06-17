@@ -1,0 +1,24 @@
+<header th:fragment="header">
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" th:href="@{/student/list}">
+      Examination Attendance Information
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="topNavbar">
+      <ul class="navbar-nav">
+      	<!-- A menu link to lists student -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/student/0}">Student</a>
+        </li>
+        
+        <!-- A menu link to add a new student -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/student/0}">Add New Student</a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+</header>
