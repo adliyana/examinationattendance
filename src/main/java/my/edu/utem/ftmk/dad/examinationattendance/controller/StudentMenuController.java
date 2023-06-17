@@ -103,7 +103,7 @@ public class StudentMenuController {
 	public String deleteStudent(@PathVariable int StudentId) {
 		
 		//Generate new URI, similar to the mapping in StudentRESTController
-		String uri = defaultURI + "{StudentId}";
+		String uri = defaultURI + "/{StudentId}";
 		
 		//Send a DELETE request and attach the value of StudentId into URI
 		RestTemplate restTemplate = new RestTemplate();
