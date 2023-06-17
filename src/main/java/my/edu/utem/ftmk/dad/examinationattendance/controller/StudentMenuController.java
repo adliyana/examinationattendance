@@ -91,7 +91,7 @@ public class StudentMenuController {
 		}
 		
 		//Attach value to pass to front end
-		model.addAttribute("student", student);
+		model.addAttribute("students", student);
 		model.addAttribute("student", pageTitle);
 		
 		return "studentinfo";

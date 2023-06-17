@@ -35,37 +35,37 @@ public class Student {
 		return StudentId;
 	}
 	public void setStudentId(int studentId) {
-		StudentId = studentId;
+		this.StudentId = studentId;
 	}
 	public String getStudentName() {
 		return StudentName;
 	}
 	public void setStudentName(String studentName) {
-		StudentName = studentName;
+		this.StudentName = studentName;
 	}
 	public String getCourse() {
 		return Course;
 	}
 	public void setCourse(String course) {
-		Course = course;
+		this.Course = course;
 	}
 	public String getSession() {
 		return Session;
 	}
 	public void setSession(String session) {
-		Session = session;
+		this.Session = session;
 	}
 	public int getPhoneNumber() {
 		return PhoneNumber;
 	}
 	public void setPhoneNumber(int phoneNumber) {
-		PhoneNumber = phoneNumber;
+		this.PhoneNumber = phoneNumber;
 	}
 	public String getEmail() {
 		return Email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.Email = email;
 	}
 	
 	
