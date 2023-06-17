@@ -76,10 +76,10 @@
               &nbsp; 
               
               <!-- A link to delete student -->
-              <!--  <a th:href="@{'/student/delete/' + ${student.StudentId}}" 
-              th:studentCode="${student.code}" id="btnDelete"
-                title="Delete this order type" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a>-->
+              <a th:href="@{'/student/delete/' + ${student.StudentId}}" 
+              th:studentId="${student.studentId}" id="btnDelete"
+                title="Delete this student" 
+                class="fa-regular fa-trash-can icon-dark btn-delete"></a>
 
             </td> 
           </tr>
@@ -122,7 +122,7 @@
         e.preventDefault();
         link = $(this);
 
-        studentCode = link.attr("studentCode");
+        studentId = link.attr("studentId");
         $("#yesBtn").attr("href", link.attr("href"));
         $("#confirmText").html("Do you want to delete the  \<strong\>" + studentCode + "\<\/strong\>?");
         $("#confirmModal").modal();

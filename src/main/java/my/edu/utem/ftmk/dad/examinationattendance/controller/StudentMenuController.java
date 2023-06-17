@@ -2,6 +2,8 @@ package my.edu.utem.ftmk.dad.examinationattendance.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -97,16 +99,16 @@ public class StudentMenuController {
 		return "studentinfo";
 	}
 	
-//	@RequestMapping("/student/delete/{StudentId}")
-//	public String deleteStudent(@PathVariable int StudentId) {
-//		
-//		//Generate new URI, similar to the mapping in StudentRESTController
-//		String uri = defaultURI + "{StudentId}";
-//		
-//		//Send a DELETE request and attach the value of StudentId into URI
-//		RestTemplate restTemplate = new RestTemplate();
-//		restTemplate.delete(uri, Map.of("StudentId", Integer.toString(StudentId)));
-//		
-//		return "redirect:/student/list";
-//	}
+	@RequestMapping("/student/delete/{StudentId}")
+	public String deleteStudent(@PathVariable int StudentId) {
+		
+		//Generate new URI, similar to the mapping in StudentRESTController
+		String uri = defaultURI + "{StudentId}";
+		
+		//Send a DELETE request and attach the value of StudentId into URI
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.delete(uri, Map.of("StudentId", Integer.toString(StudentId)));
+		
+		return "redirect:/student/list";
+	}
 }
