@@ -67,7 +67,7 @@ public class StudentMenuController {
 		System.out.println(studentResponse);
 		
 		//Redirect request to display a list of student
-		return "redirect:student/list";
+		return "redirect:/student/list";
 	}
 	
 	@GetMapping("/student/{StudentId}")

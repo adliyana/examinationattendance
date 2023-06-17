@@ -26,7 +26,7 @@ public class Student {
 	private String Session;
 	
 	@Column(name="PhoneNumber")
-	private int PhoneNumber;
+	private String PhoneNumber;
 	
 	@Column(name="Email")
 	private String Email;
@@ -55,11 +55,12 @@ public class Student {
 	public void setSession(String session) {
 		this.Session = session;
 	}
-	public int getPhoneNumber() {
+	
+	public String getPhoneNumber() {
 		return PhoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
-		this.PhoneNumber = phoneNumber;
+	public void setPhoneNumber(String phoneNumber) {
+		PhoneNumber = phoneNumber;
 	}
 	public String getEmail() {
 		return Email;
