@@ -26,9 +26,9 @@ public class Subject {
 	@Column(name="TeachingLecturer")
 	private String TeachingLecturer;
 	
-	@ManyToOne
-	@JoinColumn(name="StudentId")
-	private Student StudentId;
+//	@ManyToOne
+//	@JoinColumn(name="StudentId")
+//	private Student StudentId;
 
 	public int getSubjectId() {
 		return SubjectId;
@@ -56,13 +56,13 @@ public class Subject {
 		TeachingLecturer = teachingLecturer;
 	}
 
-	public Student getStudentId() {
-		return StudentId;
-	}
-
-	public void setStudentId(Student studentId) {
-		StudentId = studentId;
-	}
+//	public Student getStudentId() {
+//		return StudentId;
+//	}
+//
+//	public void setStudentId(Student studentId) {
+//		StudentId = studentId;
+//	}
 	
 	
 	

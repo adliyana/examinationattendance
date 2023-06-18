@@ -20,7 +20,7 @@ public class Staff {
 	private String StaffName;
 	
 	@Column(name="PhoneNumber")
-	private int PhoneNumber;
+	private String PhoneNumber;
 	
 	@Column(name="Email")
 	private String Email;
@@ -40,12 +40,12 @@ public class Staff {
 	public void setStaffName(String staffName) {
 		StaffName = staffName;
 	}
-
-	public int getPhoneNumber() {
+	
+	public String getPhoneNumber() {
 		return PhoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
 

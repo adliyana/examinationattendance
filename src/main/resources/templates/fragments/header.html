@@ -9,13 +9,23 @@
     <div class="collapse navbar-collapse" id="topNavbar">
       <ul class="navbar-nav">
       	<!-- A menu link to lists student -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" th:href="@{/student/0}">Student</a>
-        </li>
+        </li> -->
         
         <!-- A menu link to add a new student -->
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/student/0}">Add New Student</a>
+          <a class="nav-link" th:href="@{/student/list}">Student</a>
+        </li>
+        
+        <!-- A menu link to add a new device -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/device/list}">Device</a>
+        </li>
+        
+        <!-- A menu link to add a new staff -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/staff/list}">Staff</a>
         </li>
         
       </ul>

@@ -19,7 +19,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Device</h2>
+    <h2 class="text-center">List of Student</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -46,34 +46,54 @@
         </div>
       </form>
     </div> 
+    
+    <input type="button" value="Add Student" id="btnAdd" class="btn btn-success btn-sm" />
 
-    <div th:if="${deVices.size() > 0}">
+	<script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnAdd").on("click", function () {
+        window.location = "[[@{/student/0}]]";
+      });
+    });
+  </script>
+
+    <div th:if="${stuDents.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Location No</th>
-            <th scope="col">Device Type</th>
+            <th scope="col">Matric Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Course</th>
+            <th scope="col">Session</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Academic Advisor</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="device : ${deVices}">
-            <th scope="row">[[${device.deviceId}]]</th>
-            <td>[[${device.locationNo}]]</td>
-            <td>[[${device.deviceType}]]</td>
+          <tr th:each="student : ${stuDents}">
+            <th scope="row">[[${student.StudentId}]]</th>
+            <td>[[${student.matricNumber}]]</td>
+            <td>[[${student.studentName}]]</td>
+            <td>[[${student.course}]]</td>
+            <td>[[${student.session}]]</td>
+            <td>[[${student.phoneNumber}]]</td>
+            <td>[[${student.email}]]</td>
+            <td>[[${student.getStaffId().getStaffId()}]]</td>
             <td>
-              <!-- A link to edit device -->
-              <a th:href="@{'/device/' + ${device.deviceId}}" 
-              	title="Edit this device"
+              <!-- A link to edit student -->
+              <a th:href="@{'/student/' + ${student.StudentId}}" 
+              	title="Edit this student"
                 class="fa-regular fa-pen-to-square icon-dark"></a>
               &nbsp; 
               
-              <!-- A link to delete device -->
-              <!--  <a th:href="@{'/device/delete/' + ${device.deviceId}}" 
-              th:studentCode="${device.code}" id="btnDelete"
-                title="Delete this device" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a>-->
+              <!-- A link to delete student -->
+              <a th:href="@{'/student/delete/' + ${student.StudentId}}" 
+              th:studentId="${student.studentId}" id="btnDelete"
+                title="Delete this student" 
+                class="fa-regular fa-trash-can icon-dark btn-delete"></a>
 
             </td> 
           </tr>
@@ -81,7 +101,7 @@
       </table>
     </div>
 
-    <div class="" th:unless="${deVices.size() > 0}">
+    <div class="" th:unless="${stuDents.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>
@@ -89,7 +109,7 @@
   <div class="modal fade text-center" id="confirmModal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-headerdev">
+        <div class="modal-header">
           <h5 class="modal-title">Delete Confirmation</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
@@ -116,16 +136,16 @@
         e.preventDefault();
         link = $(this);
 
-        studentCode = link.attr("deviceCode");
+        studentId = link.attr("studentId");
         $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + deviceCode + "\<\/strong\>?");
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + studentId + "\<\/strong\>?");
         $("#confirmModal").modal();
       });
 
       $("#btnClear").on("click", function (e) {
         e.preventDefault();
         $("#keyword").text("");
-        window.location = "[[@{/device/list}]]";
+        window.location = "[[@{/student/list}]]";
       });
     });
   </script>
