@@ -20,11 +20,14 @@ public class Staff {
 	private String StaffName;
 	
 	@Column(name="PhoneNumber")
-	private int PhoneNumber;
+	private String PhoneNumber;
 	
 	@Column(name="Email")
 	private String Email;
 
+	@Column(name="Position")
+	private String Position;
+	
 	public int getStaffId() {
 		return StaffId;
 	}
@@ -40,12 +43,12 @@ public class Staff {
 	public void setStaffName(String staffName) {
 		StaffName = staffName;
 	}
-
-	public int getPhoneNumber() {
+	
+	public String getPhoneNumber() {
 		return PhoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
 
@@ -55,6 +58,14 @@ public class Staff {
 
 	public void setEmail(String email) {
 		Email = email;
+	}
+
+	public String getPosition() {
+		return Position;
+	}
+
+	public void setPosition(String position) {
+		Position = position;
 	}
 	
 	
