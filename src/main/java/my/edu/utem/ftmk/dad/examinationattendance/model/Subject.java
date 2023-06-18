@@ -1,14 +1,10 @@
 package my.edu.utem.ftmk.dad.examinationattendance.model;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,51 +16,34 @@ public class Subject {
 	@Column(name="SubjectId")
 	private int SubjectId;
 	
-	@Column(name="Name")
-	private String Name;
+	@Column(name="SubjectCode")
+	private String SubjectCode;
 	
-	@Column(name="TeachingLecturer")
-	private String TeachingLecturer;
-	
-	@ManyToOne
-	@JoinColumn(name="StudentId")
-	private Student StudentId;
+	@Column(name="SubjectName")
+	private String SubjectName;
 
 	public int getSubjectId() {
 		return SubjectId;
 	}
 
 	public void setSubjectId(int subjectId) {
-		SubjectId = subjectId;
+		this.SubjectId = subjectId;
 	}
 
-	public String getName() {
-		return Name;
+	public String getSubjectCode() {
+		return SubjectCode;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public void setSubjectCode(String subjectCode) {
+		this.SubjectCode = subjectCode;
 	}
 
-
-
-	public String getTeachingLecturer() {
-		return TeachingLecturer;
+	public String getSubjectName() {
+		return SubjectName;
 	}
 
-	public void setTeachingLecturer(String teachingLecturer) {
-		TeachingLecturer = teachingLecturer;
+	public void setSubjectName(String subjectName) {
+		this.SubjectName = subjectName;
 	}
-
-	public Student getStudentId() {
-		return StudentId;
-	}
-
-	public void setStudentId(Student studentId) {
-		StudentId = studentId;
-	}
-	
-	
-	
 	
 }

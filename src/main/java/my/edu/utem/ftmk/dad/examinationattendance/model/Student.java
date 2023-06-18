@@ -5,16 +5,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="student")
 public class Student {
 	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="StudentId")
 	private int StudentId;
+	
+	@Column(name="MatricNumber")
+	private String MatricNumber;
 	
 	@Column(name="StudentName")
 	private String StudentName;
@@ -31,11 +37,21 @@ public class Student {
 	@Column(name="Email")
 	private String Email;
 	
+	@ManyToOne
+	@JoinColumn(name="AcademicAdvisor")
+	private Staff StaffId;
+	
 	public int getStudentId() {
 		return StudentId;
 	}
 	public void setStudentId(int studentId) {
 		this.StudentId = studentId;
+	}
+	public String getMatricNumber() {
+		return MatricNumber;
+	}
+	public void setMatricNumber(String matricNumber) {
+		this.MatricNumber = matricNumber;
 	}
 	public String getStudentName() {
 		return StudentName;
@@ -60,7 +76,7 @@ public class Student {
 		return PhoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
-		PhoneNumber = phoneNumber;
+		this.PhoneNumber = phoneNumber;
 	}
 	public String getEmail() {
 		return Email;
@@ -68,7 +84,12 @@ public class Student {
 	public void setEmail(String email) {
 		this.Email = email;
 	}
-	
-	
+	//foreign key
+	public Staff getStaffId() {
+		return StaffId;
+	}
+	public void setStaffId(Staff staffId) {
+		this.StaffId = staffId;
+	}
 	
 }

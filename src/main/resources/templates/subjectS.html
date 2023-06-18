@@ -19,7 +19,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Student</h2>
+    <h2 class="text-center">List of Subject</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -47,42 +47,32 @@
       </form>
     </div> 
 
-    <div th:if="${stuDents.size() > 0}">
+    <div th:if="${subJects.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Matric Number</th>
-            <th scope="col">Name</th>
-            <th scope="col">Course</th>
-            <th scope="col">Session</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Email</th>
-            <th scope="col">Academic Advisor</th>
+            <th scope="col">Subject Code</th>
+            <th scope="col">Subject Name</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="student : ${stuDents}">
-            <th scope="row">[[${student.StudentId}]]</th>
-            <td>[[${student.matricNumber}]]</td>
-            <td>[[${student.studentName}]]</td>
-            <td>[[${student.course}]]</td>
-            <td>[[${student.session}]]</td>
-            <td>[[${student.phoneNumber}]]</td>
-            <td>[[${student.email}]]</td>
-            <td>[[${student.getStaffId().getStaffId()}]]</td>
+          <tr th:each="subject : ${subJects}">
+            <th scope="row">[[${subject.SubjectId}]]</th>
+            <td>[[${subject.subjectCode}]]</td>
+            <td>[[${subject.subjectName}]]</td>
             <td>
-              <!-- A link to edit student -->
-              <a th:href="@{'/student/' + ${student.StudentId}}" 
-              	title="Edit this student"
+              <!-- A link to edit subject -->
+              <a th:href="@{'/subject/' + ${subject.SubjectId}}" 
+              	title="Edit this subject"
                 class="fa-regular fa-pen-to-square icon-dark"></a>
               &nbsp; 
               
-              <!-- A link to delete student -->
-              <a th:href="@{'/student/delete/' + ${student.StudentId}}" 
-              th:studentId="${student.studentId}" id="btnDelete"
-                title="Delete this student" 
+              <!-- A link to delete subject -->
+              <a th:href="@{'/subject/delete/' + ${subject.SubjectId}}" 
+              th:subjectId="${subject.subjectId}" id="btnDelete"
+                title="Delete this subject" 
                 class="fa-regular fa-trash-can icon-dark btn-delete"></a>
 
             </td> 
@@ -91,7 +81,7 @@
       </table>
     </div>
 
-    <div class="" th:unless="${stuDents.size() > 0}">
+    <div class="" th:unless="${subJects.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>
@@ -126,16 +116,16 @@
         e.preventDefault();
         link = $(this);
 
-        studentId = link.attr("studentId");
+        subjectId = link.attr("subjectId");
         $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + studentId + "\<\/strong\>?");
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + subjectId + "\<\/strong\>?");
         $("#confirmModal").modal();
       });
 
       $("#btnClear").on("click", function (e) {
         e.preventDefault();
         $("#keyword").text("");
-        window.location = "[[@{/student/list}]]";
+        window.location = "[[@{/subject/list}]]";
       });
     });
   </script>

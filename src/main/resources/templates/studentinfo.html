@@ -33,6 +33,14 @@
             </div>-->
           </div>
 
+		  <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="MatricNumber">Matric Number</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{MatricNumber}" minlength="2" maxlength="256" class="form-control"
+                id="MatricNumber" />
+            </div>
+          </div>
+
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="StudentName">Name</label>
             <div class="col-sm-9">
@@ -70,6 +78,16 @@
             <div class="col-sm-9">
               <input type="text" th:field="*{Email}" minlength="2" maxlength="256" class="form-control"
                 id="Email" />
+            </div>
+          </div>
+          
+          
+          //foreign key
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="AcademicAdvisor">Academic Advisor</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{StaffId}" minlength="2" maxlength="256" class="form-control"
+                id="StaffId" />
             </div>
           </div>
           
