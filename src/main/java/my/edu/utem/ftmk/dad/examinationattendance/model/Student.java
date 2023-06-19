@@ -47,12 +47,12 @@ public class Student {
 	public void setStudentId(int studentId) {
 		this.StudentId = studentId;
 	}
+	
 	public String getMatricNumber() {
 		return MatricNumber;
 	}
-	
 	public void setMatricNumber(String matricNumber) {
-
+		MatricNumber = matricNumber;
 	}
 	public String getStudentName() {
 		return StudentName;

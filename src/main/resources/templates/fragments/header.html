@@ -8,24 +8,30 @@
     </button>
     <div class="collapse navbar-collapse" id="topNavbar">
       <ul class="navbar-nav">
+      
       	<!-- A menu link to lists student -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" th:href="@{/student/0}">Student</a>
-        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/examinationattend/list}">Examination Attendance</a>
+        </li> 
         
         <!-- A menu link to add a new student -->
         <li class="nav-item">
           <a class="nav-link" th:href="@{/student/list}">Student</a>
         </li>
         
-        <!-- A menu link to add a new device -->
+        <!-- A menu link to add a new staff -->
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/device/list}">Device</a>
+          <a class="nav-link" th:href="@{/staff/list}">Staff</a>
         </li>
         
         <!-- A menu link to add a new staff -->
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/staff/list}">Staff</a>
+          <a class="nav-link" th:href="@{/subject/list}">Subject</a>
+        </li>
+        
+        <!-- A menu link to add a new staff -->
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/examination/list}">Examination</a>
         </li>
         
       </ul>
