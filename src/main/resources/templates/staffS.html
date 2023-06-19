@@ -65,6 +65,8 @@
             <th scope="col">Name</th>
             <th scope="col">Phone Number</th>
             <th scope="col">Email</th>
+            <th scope="col">Position</th>
+            <th scope="col">Subject Id</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -74,6 +76,9 @@
             <td>[[${staff.staffName}]]</td>
             <td>[[${staff.phoneNumber}]]</td>
             <td>[[${staff.email}]]</td>
+            <td>[[${staff.position}]]</td>
+            <td>[[${staff.getSubjectId().getSubjectId()}]]</td>
+            
             <td>
               <!-- A link to edit staff -->
               <a th:href="@{'/staff/' + ${staff.staffId}}" 

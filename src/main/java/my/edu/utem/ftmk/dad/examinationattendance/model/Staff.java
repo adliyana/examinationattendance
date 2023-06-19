@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +29,10 @@ public class Staff {
 
 	@Column(name="Position")
 	private String Position;
+	
+	@ManyToOne
+	@JoinColumn(name="SubjectId")
+	private Subject SubjectId;
 	
 	public int getStaffId() {
 		return StaffId;
@@ -66,6 +72,14 @@ public class Staff {
 
 	public void setPosition(String position) {
 		Position = position;
+	}
+
+	public Subject getSubjectId() {
+		return SubjectId;
+	}
+
+	public void setSubjectId(Subject subjectId) {
+		SubjectId = subjectId;
 	}
 	
 	
