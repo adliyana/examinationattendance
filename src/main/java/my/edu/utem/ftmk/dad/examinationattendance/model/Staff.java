@@ -25,6 +25,9 @@ public class Staff {
 	@Column(name="Email")
 	private String Email;
 
+	@Column(name="Position")
+	private String Position;
+	
 	public int getStaffId() {
 		return StaffId;
 	}
@@ -55,6 +58,14 @@ public class Staff {
 
 	public void setEmail(String email) {
 		Email = email;
+	}
+
+	public String getPosition() {
+		return Position;
+	}
+
+	public void setPosition(String position) {
+		Position = position;
 	}
 	
 	

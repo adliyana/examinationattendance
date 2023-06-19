@@ -19,52 +19,20 @@
     <h2 class="text-center">[[${pageTitle}]]</h2>
 
     <div class="my-3">
-      <form th:action="@{/student/save}" method="post" enctype="multipart/form-data" th:object="${students}"
+      <form th:action="@{/staff/save}" method="post" enctype="multipart/form-data" th:object="${staffs}"
         style="max-width: 550px; margin: 0 auto">
 
-        <input type="hidden" th:field="*{StudentId}" />
+        <input type="hidden" th:field="*{StaffId}" />
 
         <div class="p-3">
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="MatricNumber">Matric Number</label>
+            <label class="col-sm-3 col-form-label" for="StaffName">Staff Name</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{MatricNumber}" required minlength="3" maxlength="3" class="form-control"
-                id="MatricNumber" />
+              <input type="text" th:field="*{StaffName}" required minlength="3" maxlength="3" class="form-control"
+                id="StaffName" />
             </div>
           </div>
 
-		  <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="MatricNumber">Matric Number</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{MatricNumber}" minlength="2" maxlength="256" class="form-control"
-                id="MatricNumber" />
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="StudentName">Name</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{StudentName}" minlength="2" maxlength="256" class="form-control"
-                id="StudentName" />
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="Course">Course</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{Course}" minlength="2" maxlength="256" class="form-control"
-                id="Course" />
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="Session">Session</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{Session}" minlength="2" maxlength="256" class="form-control"
-                id="Session" />
-            </div>
-          </div>
-          
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="PhoneNumber">Phone Number</label>
             <div class="col-sm-9">
@@ -76,16 +44,18 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="Email">Email</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{Email}" minlength="2" maxlength="256" class="form-control"
+              <input type="text" th:field="*{Course}" minlength="2" maxlength="256" class="form-control"
                 id="Email" />
             </div>
           </div>
           
+        
+          
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="AcademicAdvisor">Academic Advisor</label>
+            <label class="col-sm-3 col-form-label" for="SubjectId">Subject Id</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{StaffId}" minlength="2" maxlength="256" class="form-control"
-                id="StaffId" />
+              <input type="text" th:field="*{SubjectId}" minlength="2" maxlength="256" class="form-control"
+                id="SubjectId" />
             </div>
           </div>
           
@@ -103,7 +73,7 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $("#btnCancel").on("click", function () {
-        window.location = "[[@{/student/list}]]";
+        window.location = "[[@{/staff/list}]]";
       });
     });
   </script>

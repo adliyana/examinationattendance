@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 @Table(name="student")
 public class Student {
 	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="StudentId")
@@ -49,8 +50,9 @@ public class Student {
 	public String getMatricNumber() {
 		return MatricNumber;
 	}
+	
 	public void setMatricNumber(String matricNumber) {
-		MatricNumber = matricNumber;
+
 	}
 	public String getStudentName() {
 		return StudentName;
@@ -75,7 +77,7 @@ public class Student {
 		return PhoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
-		PhoneNumber = phoneNumber;
+		this.PhoneNumber = phoneNumber;
 	}
 	public String getEmail() {
 		return Email;
@@ -83,13 +85,13 @@ public class Student {
 	public void setEmail(String email) {
 		this.Email = email;
 	}
+
 	public Staff getStaffId() {
 		return StaffId;
 	}
 	public void setStaffId(Staff staffId) {
 		this.StaffId = staffId;
 	}
-	
-	
+
 	
 }
