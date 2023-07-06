@@ -3,7 +3,8 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,
+  minimum-scale=1.0" />
   <title>REST Examination Attendance</title>
 
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
@@ -19,7 +20,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Device</h2>
+    <h2 class="text-center">List of Subject</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -29,13 +30,14 @@
       </button>
     </div>
 
-    <div class="my-3">
+    <!--  <div class="my-3">
       <form th:action="@{/tutorials}">
         <div class="row d-flex">
           <div class="col-md-6 mt-2">
             <div class="search">
               <i class="fa fa-search"></i>
-              <input id="keyword" type="search" name="keyword" th:value="${keyword}" required class="form-control"
+              <input id="keyword" type="search" name="keyword" th:value="$
+              {keyword}" required class="form-control"
                 placeholder="Enter keyword">
               <button type="submit" class="btn btn-secondary">Search</button>
             </div>
@@ -45,35 +47,34 @@
           </div>
         </div>
       </form>
-    </div> 
+    </div> -->
 
-    <div th:if="${deVices.size() > 0}">
+    <div th:if="${subJects.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Location No</th>
-            <th scope="col">Device Type</th>
-            <th scope="col">Action</th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="device : ${deVices}">
-            <th scope="row">[[${device.deviceId}]]</th>
-            <td>[[${device.locationNo}]]</td>
-            <td>[[${device.deviceType}]]</td>
+          <tr th:each="subject : ${subJects}">
+            <th scope="row">[[${subject.subjectId}]]</th>
+            <td>[[${subject.code}]]</td>
+            <td>[[${subject.name}]]</td>
             <td>
-              <!-- A link to edit device -->
-              <a th:href="@{'/device/' + ${device.deviceId}}" 
-              	title="Edit this device"
+              <!-- A link to edit subject -->
+              <!--  <a th:href="@{'/subject/' + ${subject.subjectId}}" 
+              	title="Edit this subject"
                 class="fa-regular fa-pen-to-square icon-dark"></a>
-              &nbsp; 
+              &nbsp; -->
               
-              <!-- A link to delete device -->
-              <!--  <a th:href="@{'/device/delete/' + ${device.deviceId}}" 
-              th:studentCode="${device.code}" id="btnDelete"
-                title="Delete this device" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a>-->
+              <!-- A link to delete subject -->
+              <!-- <a th:href="@{'/subject/delete/' + ${subject.SubjectId}}" 
+              th:subjectId="${subject.subjectId}" id="btnDelete"
+                title="Delete this subject" 
+                class="fa-regular fa-trash-can icon-dark btn-delete"></a> -->
 
             </td> 
           </tr>
@@ -81,7 +82,7 @@
       </table>
     </div>
 
-    <div class="" th:unless="${deVices.size() > 0}">
+    <div class="" th:unless="${subJects.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>
@@ -89,7 +90,7 @@
   <div class="modal fade text-center" id="confirmModal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-headerdev">
+        <div class="modal-header">
           <h5 class="modal-title">Delete Confirmation</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
@@ -116,16 +117,17 @@
         e.preventDefault();
         link = $(this);
 
-        studentCode = link.attr("deviceCode");
+        subjectId = link.attr("subjectId");
         $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + deviceCode + "\<\/strong\>?");
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + 
+        		subjectId + "\<\/strong\>?");
         $("#confirmModal").modal();
       });
 
       $("#btnClear").on("click", function (e) {
         e.preventDefault();
         $("#keyword").text("");
-        window.location = "[[@{/device/list}]]";
+        window.location = "[[@{/subject/list}]]";
       });
     });
   </script>

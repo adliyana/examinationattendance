@@ -17,9 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.examinationattendance.model.Examination;
 import my.edu.utem.ftmk.dad.examinationattendance.repository.ExaminationRepository;
 
+/**
+ * This class represents REST Controller for Examination
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ *
+ */
+
 @RestController
 @RequestMapping("/api/examinations")
-public class ExaminationRESTController {
+public class ExaminationRestController {
 
 	@Autowired
 	private ExaminationRepository examinationRepository;
@@ -30,10 +39,12 @@ public class ExaminationRESTController {
 		return examinationRepository.findAll();
 	}
 	
-	@GetMapping("{ExaminationId}")
-	public Examination getExamination(@PathVariable long ExaminationId){
+	// examinationId
+	@GetMapping("{examinationId}")
+	public Examination getExamination(@PathVariable long examinationId){
 		
-		Examination examination = examinationRepository.findById(ExaminationId).get();
+		Examination examination = examinationRepository.findById(examinationId)
+				.get();
 		
 		return examination;
 	}
@@ -50,10 +61,11 @@ public class ExaminationRESTController {
 		return examinationRepository.save(examination);
 	}
 	
-	@DeleteMapping("{ExaminationId}")
-	public ResponseEntity<HttpStatus> deleteExamination(@PathVariable long ExaminationId){
+	@DeleteMapping("{examinationId}")
+	public ResponseEntity<HttpStatus> deleteExamination(@PathVariable long 
+			examinationId){
 		
-		examinationRepository.deleteById(ExaminationId);
+		examinationRepository.deleteById(examinationId);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

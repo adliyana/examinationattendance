@@ -9,55 +9,76 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * This class represents of Examination
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ *
+ */
 @Entity
 @Table(name="examination")
 public class Examination {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ExaminationId")
-	private int ExaminationId;
+	@Column(name="examinationId")
+	private int examinationId;
 	
-	@Column(name="DateTime")
-	private String DateTime;
+	@Column(name="dateTime")
+	private String dateTime;
+	
+	@Column(name="venue")
+	private String venue;
 	
 	@ManyToOne
-	@JoinColumn(name="SubjectId")
-	private Subject SubjectId;
+	@JoinColumn(name="subjectName")
+	private Subject subject;
 	
 	@ManyToOne
-	@JoinColumn(name="ChiefInvigilator")
-	private Staff StaffId;
-	
+	@JoinColumn(name="chiefInvigilator")
+	private Staff staff;
+
 	public int getExaminationId() {
-		return ExaminationId;
+		return examinationId;
 	}
 
 	public void setExaminationId(int examinationId) {
-		this.ExaminationId = examinationId;
+		this.examinationId = examinationId;
 	}
 
 	public String getDateTime() {
-		return DateTime;
+		return dateTime;
 	}
 
 	public void setDateTime(String dateTime) {
-		this.DateTime = dateTime;
-	}
-    
-	public Subject getSubjectId() {
-		return SubjectId;
-	}
-    
-	public void setSubjectId(Subject subjectId) {
-		this.SubjectId = subjectId;
+		this.dateTime = dateTime;
 	}
 
-	public Staff getStaffId() {
-		return StaffId;
+	public String getVenue() {
+		return venue;
 	}
 
-	public void setStaffId(Staff staffId) {
-		this.StaffId = staffId;
+	public void setVenue(String venue) {
+		this.venue = venue;
 	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
+
 }

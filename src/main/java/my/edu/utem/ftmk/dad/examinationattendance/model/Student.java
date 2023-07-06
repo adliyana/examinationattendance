@@ -9,6 +9,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ *This class represents of Student
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ *
+ */
+
 @Entity
 @Table(name="student")
 public class Student {
@@ -16,82 +25,94 @@ public class Student {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="StudentId")
-	private int StudentId;
+	@Column(name="studentId")
+	private int studentId;
 	
-	@Column(name="MatricNumber")
-	private String MatricNumber;
+	@Column(name="matricNumber")
+	private String matricNumber;
 	
-	@Column(name="StudentName")
-	private String StudentName;
+	@Column(name="studentName")
+	private String name;
 	
-	@Column(name="Course")
-	private String Course;
+	@Column(name="course")
+	private String course;
 	
-	@Column(name="Session")
-	private String Session;
+	@Column(name="session")
+	private String session;
 	
-	@Column(name="PhoneNumber")
-	private String PhoneNumber;
+	@Column(name="phoneNumber")
+	private String phoneNumber;
 	
-	@Column(name="Email")
-	private String Email;
+	@Column(name="email")
+	private String email;
 	
 	@ManyToOne
-	@JoinColumn(name="AcademicAdvisor")
-	private Staff StaffId;
-	
+	@JoinColumn(name="academicAdvisor")
+	private Staff staff;
+
 	public int getStudentId() {
-		return StudentId;
+		return studentId;
 	}
+
 	public void setStudentId(int studentId) {
-		this.StudentId = studentId;
+		this.studentId = studentId;
 	}
-	
+
 	public String getMatricNumber() {
-		return MatricNumber;
+		return matricNumber;
 	}
+
 	public void setMatricNumber(String matricNumber) {
-		MatricNumber = matricNumber;
+		this.matricNumber = matricNumber;
 	}
-	public String getStudentName() {
-		return StudentName;
+
+	public String getName() {
+		return name;
 	}
-	public void setStudentName(String studentName) {
-		this.StudentName = studentName;
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
 	public String getCourse() {
-		return Course;
+		return course;
 	}
+
 	public void setCourse(String course) {
-		this.Course = course;
+		this.course = course;
 	}
+
 	public String getSession() {
-		return Session;
+		return session;
 	}
+
 	public void setSession(String session) {
-		this.Session = session;
+		this.session = session;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 	
-	public String getPhoneNumber() {
-		return PhoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.PhoneNumber = phoneNumber;
-	}
-	public String getEmail() {
-		return Email;
-	}
-	public void setEmail(String email) {
-		this.Email = email;
-	}
-
-	public Staff getStaffId() {
-		return StaffId;
-	}
-	public void setStaffId(Staff staffId) {
-		this.StaffId = staffId;
-	}
-
 	
 }

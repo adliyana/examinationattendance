@@ -22,30 +22,33 @@
       <form th:action="@{/subject/save}" method="post" enctype="multipart/form-data" th:object="${subjects}"
         style="max-width: 550px; margin: 0 auto">
 
-        <input type="hidden" th:field="*{SubjectId}" />
+        <input type="hidden" th:field="*{subjectId}" />
 
         <div class="p-3">
           <!--  <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="SubjectId">Id</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{SubjectId}" required minlength="3" maxlength="3" class="form-control"
-                id="SubjectId" />
+              <input type="text" th:field="*{SubjectId}" required minlength="3" 
+              maxlength="3" class="form-control"
+                id="subjectId" />
             </div>-->
           </div>
 
 		  <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="SubjectCode">Code</label>
+            <label class="col-sm-3 col-form-label" for="Code">Code
+            </label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{SubjectCode}" minlength="2" maxlength="256" class="form-control"
-                id="SubjectCode" />
+              <input type="text" th:field="*{Code}" minlength="2" maxlength="256" class="form-control"
+                id="Code" />
             </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="SubjectName">Name</label>
+            <label class="col-sm-3 col-form-label" for="Name">Name
+            </label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{SubjectName}" minlength="2" maxlength="256" class="form-control"
-                id="SubjectName" />
+              <input type="text" th:field="*{Name}" minlength="2" maxlength="256" class="form-control"
+                id="Name" />
             </div>
           </div>
           

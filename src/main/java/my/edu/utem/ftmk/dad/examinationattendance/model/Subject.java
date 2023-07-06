@@ -7,44 +7,51 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * This class represents of Subject
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ *
+ */
+
 @Entity
 @Table(name="subject")
 public class Subject {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="SubjectId")
-	private int SubjectId;
+	@Column(name="subjectId")
+	private int subjectId;
 	
-	@Column(name="SubjectCode")
-	private String SubjectCode;
-	
+	@Column(name="code")
+	private String code;
 
-	@Column(name="SubjectName")
-	private String SubjectName;
-
+	@Column(name="name")
+	private String name;
 
 	public int getSubjectId() {
-		return SubjectId;
+		return subjectId;
 	}
 
 	public void setSubjectId(int subjectId) {
-		this.SubjectId = subjectId;
+		this.subjectId = subjectId;
 	}
 
-	public String getSubjectCode() {
-		return SubjectCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setSubjectCode(String subjectCode) {
-		this.SubjectCode = subjectCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getSubjectName() {
-		return SubjectName;
+	public String getName() {
+		return name;
 	}
 
-	public void setSubjectName(String subjectName) {
-		this.SubjectName = subjectName;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

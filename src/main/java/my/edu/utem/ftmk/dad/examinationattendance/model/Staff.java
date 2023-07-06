@@ -1,5 +1,14 @@
 package my.edu.utem.ftmk.dad.examinationattendance.model;
 
+/**
+ * This class represents of Staff
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ * 
+ */
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,75 +24,71 @@ public class Staff {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="StaffId")
-	private int StaffId;
+	@Column(name="staffId")
+	private int staffId;
 	
-	@Column(name="StaffName")
-	private String StaffName;
+	@Column(name="name")
+	private String name;
 	
-	@Column(name="PhoneNumber")
-	private String PhoneNumber;
+	@Column(name="phoneNumber")
+	private String phoneNumber;
 	
-	@Column(name="Email")
-	private String Email;
+	@Column(name="email")
+	private String email;
 
-	@Column(name="Position")
-	private String Position;
+	@Column(name="position")
+	private String position;
 	
 	@ManyToOne
-	@JoinColumn(name="SubjectId")
-	private Subject SubjectId;
-	
+	@JoinColumn(name="subjectName")
+	private Subject subject;
+
 	public int getStaffId() {
-		return StaffId;
+		return staffId;
 	}
 
 	public void setStaffId(int staffId) {
-		StaffId = staffId;
+		this.staffId = staffId;
 	}
 
-	public String getStaffName() {
-		return StaffName;
+	public String getName() {
+		return name;
 	}
 
-	public void setStaffName(String staffName) {
-		StaffName = staffName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
+
 	public String getPhoneNumber() {
-		return PhoneNumber;
+		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		PhoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getPosition() {
-		return Position;
+		return position;
 	}
 
 	public void setPosition(String position) {
-		Position = position;
+		this.position = position;
 	}
 
-	public Subject getSubjectId() {
-		return SubjectId;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubjectId(Subject subjectId) {
-		SubjectId = subjectId;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
-	
-	
-	
-	
 	
 }

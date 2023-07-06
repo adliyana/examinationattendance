@@ -19,7 +19,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Examination</h2>
+    <h2 class="text-center">List of Examination Attendance</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -29,7 +29,7 @@
       </button>
     </div>
 
-    <div class="my-3">
+    <!--  <div class="my-3">
       <form th:action="@{/tutorials}">
         <div class="row d-flex">
           <div class="col-md-6 mt-2">
@@ -45,46 +45,49 @@
           </div>
         </div>
       </form>
-    </div> 
+    </div> -->
+    
+    <input type="button" value="Add Attendance" id="btnAdd" class="btn btn-success btn-sm" />
 
-    <div th:if="${exaMinations.size() > 0}">
+	<script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnAdd").on("click", function () {
+        window.location = "[[@{/examinationattend/0}]]";
+      });
+    });
+  </script>
+
+    <div th:if="${examAttend.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">DateTime</th>
-            <th scope="col">Subject Id</th>
-            <th scope="col">Chief Invigilator</th>
-            
-            <th scope="col">Action</th>
+            <th scope="col">Check In Time</th>
+            <th scope="col">Venue</th>
+            <th scope="col">Device Type</th>
+            <th scope="col">Status</th>
+	    	<th scope="col">Subject Name</th>
+	    	<th scope="col">Matric Number</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="examination : ${exaMinations}">
-            <th scope="row">[[${examination.ExaminationId}]]</th>
-            <th scope="row">[[${examination.DateTime}]]</th>            
-            <td>[[${examination.getSubjectId().getSubjectId()}]]</th>
-            <td>[[${examination.getStaffId().getStaffId()}]]</td>
+          <tr th:each="examinationAttendance : ${examAttend}">
+            <th scope="row">[[${examinationAttendance.examinationAttendanceId}]]</th>
+            <td>[[${examinationAttendance.checkInTime}]]</td>
+            <td>[[${examinationAttendance.venue}]]</td>
+            <td>[[${examinationAttendance.deviceType}]]</td>
+            <td>[[${examinationAttendance.status}]]</td>
+            <td>[[${examinationAttendance.getExamination().getSubject().getName()}]]</td>
+            <td>[[${examinationAttendance.getStudent().getMatricNumber()}]]</td>
             <td>
-              <!-- A link to edit examination -->
-              <a th:href="@{'/examination/' + ${examination.ExaminationId}}" 
-              	title="Edit this examination"
-                class="fa-regular fa-pen-to-square icon-dark"></a>
-              &nbsp; 
-              
-              <!-- A link to delete examination -->
-              <a th:href="@{'/examination/delete/' + ${examination.ExaminationId}}" 
-              th:examinationId="${examination.examinationId}" id="btnDelete"
-                title="Delete this examination" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a>
-
+           
             </td> 
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="" th:unless="${exaMinations.size() > 0}">
+    <div class="" th:unless="${examAttend.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>
@@ -92,7 +95,7 @@
   <div class="modal fade text-center" id="confirmModal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-headerdev">
           <h5 class="modal-title">Delete Confirmation</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
@@ -119,16 +122,16 @@
         e.preventDefault();
         link = $(this);
 
-        examinationId = link.attr("examinationId");
+        studentCode = link.attr("deviceCode");
         $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + examinationId + "\<\/strong\>?");
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + deviceCode + "\<\/strong\>?");
         $("#confirmModal").modal();
       });
 
       $("#btnClear").on("click", function (e) {
         e.preventDefault();
         $("#keyword").text("");
-        window.location = "[[@{/examination/list}]]";
+        window.location = "[[@{/examinationattend/list}]]";
       });
     });
   </script>

@@ -19,7 +19,7 @@
   <div th:replace="fragments/header :: header"></div>
 
   <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
-    <h2 class="text-center">List of Subject</h2>
+    <h2 class="text-center">List of Staff</h2>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
       role="alert">
@@ -29,7 +29,7 @@
       </button>
     </div>
 
-    <div class="my-3">
+    <!--  <div class="my-3">
       <form th:action="@{/tutorials}">
         <div class="row d-flex">
           <div class="col-md-6 mt-2">
@@ -45,35 +45,51 @@
           </div>
         </div>
       </form>
-    </div> 
+    </div> -->
+    
+    <!-- <input type="button" value="Add Staff" id="btnAdd" class="btn btn-success btn-sm" /> -->
 
-    <div th:if="${subJects.size() > 0}">
+	<script type="text/javascript">
+    $(document).ready(function () {
+      $("#btnAdd").on("click", function () {
+        window.location = "[[@{/staff/0}]]";
+      });
+    });
+  </script>
+
+    <div th:if="${sTaffs.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Subject Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Position</th>
             <th scope="col">Subject Name</th>
-            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="subject : ${subJects}">
-            <th scope="row">[[${subject.SubjectId}]]</th>
-            <td>[[${subject.subjectCode}]]</td>
-            <td>[[${subject.subjectName}]]</td>
+          <tr th:each="staff : ${sTaffs}">
+            <th scope="row">[[${staff.staffId}]]</th>
+            <td>[[${staff.name}]]</td>
+            <td>[[${staff.phoneNumber}]]</td>
+            <td>[[${staff.email}]]</td>
+            <td>[[${staff.position}]]</td>
+            <td>[[${staff.getSubject().getName()}]]</td>
+            
             <td>
-              <!-- A link to edit subject -->
-              <a th:href="@{'/subject/' + ${subject.SubjectId}}" 
-              	title="Edit this subject"
+              <!-- A link to edit staff -->
+              <!--  <a th:href="@{'/staff/' + ${staff.staffId}}" 
+              	title="Edit this staff"
                 class="fa-regular fa-pen-to-square icon-dark"></a>
-              &nbsp; 
+              &nbsp; -->
               
-              <!-- A link to delete subject -->
-              <a th:href="@{'/subject/delete/' + ${subject.SubjectId}}" 
-              th:subjectId="${subject.subjectId}" id="btnDelete"
-                title="Delete this subject" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+              <!-- A link to delete device -->
+              <!--  <a th:href="@{'/device/delete/' + ${device.deviceId}}" 
+              th:studentCode="${device.code}" id="btnDelete"
+                title="Delete this device" 
+                class="fa-regular fa-trash-can icon-dark btn-delete"></a>-->
 
             </td> 
           </tr>
@@ -81,7 +97,7 @@
       </table>
     </div>
 
-    <div class="" th:unless="${subJects.size() > 0}">
+    <div class="" th:unless="${sTaffs.size() > 0}">
       <span>No record found!</span>
     </div>
   </div>
@@ -89,7 +105,7 @@
   <div class="modal fade text-center" id="confirmModal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-headerdev">
           <h5 class="modal-title">Delete Confirmation</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
@@ -116,16 +132,16 @@
         e.preventDefault();
         link = $(this);
 
-        subjectId = link.attr("subjectId");
+        studentCode = link.attr("deviceCode");
         $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + subjectId + "\<\/strong\>?");
+        $("#confirmText").html("Do you want to delete the  \<strong\>" + deviceCode + "\<\/strong\>?");
         $("#confirmModal").modal();
       });
 
       $("#btnClear").on("click", function (e) {
         e.preventDefault();
         $("#keyword").text("");
-        window.location = "[[@{/subject/list}]]";
+        window.location = "[[@{/staff/list}]]";
       });
     });
   </script>

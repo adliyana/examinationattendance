@@ -17,9 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.examinationattendance.model.Subject;
 import my.edu.utem.ftmk.dad.examinationattendance.repository.SubjectRepository;
 
+/**
+ * This class represents REST Controller for Subject
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ *
+ */
+
 @RestController
 @RequestMapping("/api/subjects")
-public class SubjectRESTController {
+public class SubjectRestController {
 
 	@Autowired
 	private SubjectRepository subjectRepository;
@@ -30,10 +39,10 @@ public class SubjectRESTController {
 		return subjectRepository.findAll();
 	}
 	
-	@GetMapping("{SubjectId}")
-	public Subject getSubject(@PathVariable long SubjectId){
+	@GetMapping("{subjectId}")
+	public Subject getSubject(@PathVariable long subjectId){
 		
-		Subject subject = subjectRepository.findById(SubjectId).get();
+		Subject subject = subjectRepository.findById(subjectId).get();
 		
 		return subject;
 	}
@@ -50,10 +59,11 @@ public class SubjectRESTController {
 		return subjectRepository.save(subject);
 	}
 	
-	@DeleteMapping("{SubjectId}")
-	public ResponseEntity<HttpStatus> deleteSubject(@PathVariable long SubjectId){
+	@DeleteMapping("{subjectId}")
+	public ResponseEntity<HttpStatus> deleteSubject(@PathVariable 
+			long subjectId){
 		
-		subjectRepository.deleteById(SubjectId);
+		subjectRepository.deleteById(subjectId);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

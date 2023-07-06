@@ -22,24 +22,9 @@
       <form th:action="@{/examinationattend/save}" method="post" enctype="multipart/form-data" th:object="${examinationattends}"
         style="max-width: 550px; margin: 0 auto">
 
-        <input type="hidden" th:field="*{ExaminationAttendanceId}" />
+        <input type="hidden" th:field="*{examinationAttendanceId}" />
 
         <div class="p-3">
-          <!--  <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="ExaminationAttendanceId">Id</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{ExaminationAttendanceId}" required minlength="3" maxlength="3" class="form-control"
-                id="ExaminationAttendanceId" />
-            </div>-->
-          </div>
-
-		  <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="CheckInTime">Check In Time</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{CheckInTime}" minlength="2" maxlength="256" class="form-control"
-                id="CheckInTime" />
-            </div>
-          </div>
 
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="Venue">Venue</label>
@@ -66,18 +51,18 @@
           </div>
           
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="ExaminationId">ExaminationId</label>
+            <label class="col-sm-3 col-form-label" for="subjectName">Subject Name</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{ExaminationId}" minlength="2" maxlength="256" class="form-control"
-                id="ExaminationId" />
+              <input type="text" th:field="*{examinationId}" minlength="1" maxlength="256" class="form-control"
+                id="examinationId" />
             </div>
           </div>
           
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="StudentId">StudentId</label>
+            <label class="col-sm-3 col-form-label" for="matricNumber">Matric Number</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{StudentId}" minlength="2" maxlength="256" class="form-control"
-                id="StudentId" />
+              <input type="text" th:field="*{studentId}" minlength="1" maxlength="256" class="form-control"
+                id="studentId" />
             </div>
           </div>
           

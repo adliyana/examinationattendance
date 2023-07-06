@@ -16,9 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 import my.edu.utem.ftmk.dad.examinationattendance.model.Staff;
 import my.edu.utem.ftmk.dad.examinationattendance.repository.StaffRepository;
 
+/**
+ * This class represents REST Controller for Staff
+ * 
+ * @author Adib Adliyana
+ * @author Rose Asnarizza
+ * @author Syafiqah
+ *
+ */
+
 @RestController
 @RequestMapping("/api/staffs")
-public class StaffRESTController {
+public class StaffRestController {
 
 	@Autowired
 	private StaffRepository staffRepository;
