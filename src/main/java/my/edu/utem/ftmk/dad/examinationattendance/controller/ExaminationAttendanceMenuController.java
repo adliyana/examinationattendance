@@ -102,6 +102,34 @@ public class ExaminationAttendanceMenuController {
 		return "redirect:/examinationattend/list";
 	}
 	
+	@GetMapping("/report/{examinationId}")
+	public String getExamination (@PathVariable Integer examinationId, Model model) {
+		
+		String pageTitle = "Report Attendance";
+		
+		RestTemplate restTemplateStudent = new RestTemplate();
+		ResponseEntity<ExaminationAttendance[]> responseStudent = restTemplateStudent.getForEntity
+				("http://localhost:8080/examinationattendance/api/examinationattends/report/" 
+						+ examinationId,ExaminationAttendance[].class);
+				
+		ExaminationAttendance studentAttendance[] = responseStudent.getBody();
+		List<ExaminationAttendance> studentAttendances = Arrays.asList(studentAttendance);
+		
+		RestTemplate restTemplateStudentAbsent = new RestTemplate();
+		ResponseEntity<Student[]> responseStudentAbsent = restTemplateStudentAbsent.getForEntity
+				("http://localhost:8080/examinationattendance/api/examinationattends/report/absent/" 
+						+ examinationId,Student[].class);
+		
+		Student studentAbsent[] = responseStudentAbsent.getBody();
+		List<Student> studentAbsents = Arrays.asList(studentAbsent);
+		
+		model.addAttribute("studentAttendance", studentAttendances);
+		model.addAttribute("studentAbsent", studentAbsents);
+		model.addAttribute("pageTitle",pageTitle);
+		
+		return "report";
+	}
+	
 	@GetMapping("/examinationattend/{examinationAttendanceId}")
 	public String getExaminationAttendance
 	(@PathVariable Integer examinationAttendanceId, Model model,

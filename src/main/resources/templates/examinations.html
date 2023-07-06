@@ -13,6 +13,18 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  
+  <script>
+  function rowClick(event){
+  
+			console.log(event.target.parentElement.children[0].innerHTML)
+			console.log(window.location)
+			window.location.href = window.location.origin + "/examinationattendance/report/" 
+		    + event.target.parentElement.children[0].innerHTML
+
+  }
+   
+  </script>
 </head>
 
 <body>
@@ -61,16 +73,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="examination : ${exaMinations}">
+          <tr th:each="examination : ${exaMinations}" onclick="rowClick(event)">
             <th scope="row">[[${examination.examinationId}]]</th>
             <td>[[${examination.dateTime}]]</td>
             <td>[[${examination.venue}]]</td>                        
             <td>[[${examination.getSubject().getCode()}]]</td>
             <td>[[${examination.getSubject().getName()}]]</td>
             <td>[[${examination.getStaff().getName()}]]</td>
-            <td>
 
-            </td> 
           </tr>
         </tbody>
       </table>

@@ -47,7 +47,7 @@ public class ExaminationAttendance {
 	private Examination examination;
 	
 	@ManyToOne
-	@JoinColumn(name="matricNumber")
+	@JoinColumn(name="studentId")
 	private Student student;
 
 	public int getExaminationAttendanceId() {

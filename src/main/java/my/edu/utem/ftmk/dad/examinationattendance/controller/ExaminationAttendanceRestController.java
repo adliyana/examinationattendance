@@ -1,5 +1,6 @@
 package my.edu.utem.ftmk.dad.examinationattendance.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import my.edu.utem.ftmk.dad.examinationattendance.model.ExaminationAttendance;
+import my.edu.utem.ftmk.dad.examinationattendance.model.Student;
 import my.edu.utem.ftmk.dad.examinationattendance.repository.ExaminationAttendanceRepository;
 
 /**
@@ -51,6 +53,34 @@ public class ExaminationAttendanceRestController {
 		
 		return examinationAttendance;
 	}
+	
+	@GetMapping("/report/{examinationId}")
+	public List<ExaminationAttendance> findExaminationid(@PathVariable Long examinationId)
+	{
+		return examinationAttendanceRepository.findExaminationId(examinationId);
+	}
+	
+	@GetMapping("/report/absent/{examinationId}")
+	public List<Student> findStudentAbsent(@PathVariable int examinationId)
+	{
+		List<Object[]> queryResult = examinationAttendanceRepository.findStudentAbsent(examinationId);
+	    List<Student> studentList = new ArrayList<>();
+
+	    for (Object[] row : queryResult) {
+	        String studentName = (String) row[1];
+	        String studentMatricNo = (String) row[2];
+	        String studentCourse = (String) row[3];
+	        Student student = new Student();
+	        student.setName(studentName);
+	        student.setMatricNumber(studentMatricNo);
+	        student.setCourse(studentCourse);
+	        studentList.add(student);
+	
+	    }
+	    
+		return studentList;
+	}
+
 	
 	@PostMapping()
 	public ExaminationAttendance insertExaminationAttendance
