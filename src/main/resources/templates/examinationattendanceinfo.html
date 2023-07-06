@@ -45,6 +45,14 @@
         <input type="hidden" th:field="*{examinationAttendanceId}" />
 
         <div class="p-3">
+        
+<!--         <div class="form-group row"> -->
+<!--             <label class="col-sm-3 col-form-label" for="CheckInTime">Check In Time</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <input type="text" th:field="*{CheckInTime}" minlength="2" maxlength="256" class="form-control" -->
+<!--                 id="CheckInTime" /> -->
+<!--             </div> -->
+        
           <div class="form-group row">
           
                <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
@@ -57,7 +65,7 @@
                        		 	<p>[[${student.name}]]</p>
                        		 </div>
                        		 <div  th:if="${student == null}">
-                       		 	<p>not found !</p>
+                       		 	<p>Data not found !</p>
                        		 </div>
                        	</div>
             </div>
@@ -85,13 +93,26 @@
             </div>
           </div>
           
+<!--           <div class="form-group row"> -->
+<!--             <label class="col-sm-3 col-form-label" for="subjectName">Subject Name</label> -->
+<!--             <div class="col-sm-9"> -->
+<!--               <input type="text" th:field="*{examination.examinationId}" minlength="1" maxlength="256" class="form-control" -->
+<!--                 id="examinationId" /> -->
+<!--             </div> -->
+<!--           </div> -->
+          
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="subjectName">Subject Name</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{examination.examinationId}" minlength="1" maxlength="256" class="form-control"
-                id="examinationId" />
-            </div>
-          </div>
+    		<label class="col-sm-3 col-form-label" for="examinationId">Examination</label>
+   			<div class="col-sm-9">
+        
+        	<select name="examination" id="examination" th:field="*{examination.examinationId}"required>
+            <option th:each="examination : ${examinations}"
+            			th:value="${examination.examinationId}"
+            			th:text="${examination.subject.code} +'-'+${examination.subject.name}" 
+            />
+        	</select> 
+    		</div>
+		</div>
           
           <div class="text-center">
             <input type="submit" value="Save" class="btn btn-primary btn-sm mr-2" />

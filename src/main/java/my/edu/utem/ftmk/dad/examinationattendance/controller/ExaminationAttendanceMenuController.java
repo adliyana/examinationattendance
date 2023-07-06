@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import my.edu.utem.ftmk.dad.examinationattendance.model.Examination;
 import my.edu.utem.ftmk.dad.examinationattendance.model.ExaminationAttendance;
 import my.edu.utem.ftmk.dad.examinationattendance.model.Student;
+import my.edu.utem.ftmk.dad.examinationattendance.model.Subject;
 
 /**
  * This class represents Menu Controller for Examination Attendance
@@ -114,7 +116,8 @@ public class ExaminationAttendanceMenuController {
 			
 			RestTemplate studentREST = new RestTemplate();
 			currentStudent = studentREST.getForObject
-					("http://localhost:8080/examinationattendance/api/students/matric/"+matricNo, Student.class);
+					("http://localhost:8080/examinationattendance/api/"
+							+ "students/matric/"+matricNo, Student.class);
 			examinationattendance.setStudent(currentStudent);
 		}
 		
@@ -133,19 +136,21 @@ public class ExaminationAttendanceMenuController {
 			pageTitle = "Edit Attendance";
 		}
 		
-//		RestTemplate restTemplateVenue = new RestTemplate();
-//		ResponseEntity<Venue[]> responseVenue = 
-//				restTemplateVenue.getForEntity("http://localhost:8080/examinationattendance/api/students", Student[].class);
-//		
-//		Venue venueArray[] = responseStudent.getBody();	
-//		
-//		// Parse an array to a list object
-//		List<Student> studentList = Arrays.asList(studentArray);
+		RestTemplate restTemplateExamination = new RestTemplate();
+		ResponseEntity<Examination[]> responseExamination = 
+				restTemplateExamination.getForEntity("http://localhost:8080/"
+					+ "examinationattendance/api/examinations", 
+						Examination[].class);
+		
+		Examination examinationArray[] = responseExamination.getBody();	
+		
+		// Parse an array to a list object
+		List<Examination> examinationList = Arrays.asList(examinationArray);
 		
 		//Attach value to pass to front end
 		model.addAttribute("examinationattends", examinationattendance);
 		model.addAttribute("examinationattend", pageTitle);
-		model.addAttribute("student",currentStudent);
+		model.addAttribute("examinations",examinationList);
 		
 		return "examinationattendanceinfo";
 	}

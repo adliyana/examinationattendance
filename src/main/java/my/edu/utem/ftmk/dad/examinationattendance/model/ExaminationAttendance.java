@@ -43,7 +43,7 @@ public class ExaminationAttendance {
 	private String status;
 	
 	@ManyToOne
-	@JoinColumn(name="subjectName")
+	@JoinColumn(name="examinationId")
 	private Examination examination;
 	
 	@ManyToOne
