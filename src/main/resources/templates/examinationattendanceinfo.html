@@ -10,6 +10,21 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  
+  <script type="text/javascript">
+  function checkStudent(){
+  	window.location.href= window.location.pathname+"?matricNo="+ document.getElementById('StudentId').value;
+  	window.console.log(document.getElementById('StudentId').value)
+  	window.console.log('Hello, world');
+  }
+  
+  function validateStudentId(event){
+  		if(document.getElementById('studentVal').value == '0'){
+  			event.preventDefault();
+  			alert('error')
+  		}
+  }
+  </script>
 </head>
 
 <body>
@@ -19,9 +34,9 @@
     <h2 class="text-center">[[${pageTitle}]]</h2>
 <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
     <h2 class="text-center">UTeM Examination Attendance</h2>
-    
+
     <div class="my-3">
-    <div style="display: flex; justify-content: center;">
+     <div style="display: flex; justify-content: center;">
     	<img src="https://www.utem.edu.my/templates/yootheme/cache/8e/LogoUTeM-8ec6c416.png" alt="Logo UTeM" class="img-fluid">
     </div>
       <form th:action="@{/examinationattend/save}" method="post" enctype="multipart/form-data" th:object="${examinationattends}"
@@ -30,51 +45,51 @@
         <input type="hidden" th:field="*{examinationAttendanceId}" />
 
         <div class="p-3">
-          
           <div class="form-group row">
-    		<label class="col-sm-3 col-form-label" for="Venue">Venue</label>
+          
+               <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
+                        <div class="col-sm-9">
+                            <input type="text" th:field="*{Student.MatricNumber}" required minlength="1"
+                             maxlength="10" class="form-control" id="StudentId" />
+                             <input id="studentIdVal" type="hidden" th:field="*{Student.StudentId}"> 
+                       		 <input onclick="checkStudent()" type="button" value="Check" class="btn btn-primary btn-sm mr-2" />
+                       		 <div  th:if="${student != null}">
+                       		 	<p>[[${student.name}]]</p>
+                       		 </div>
+                       		 <div  th:if="${student == null}">
+                       		 	<p>not found !</p>
+                       		 </div>
+                       	</div>
+            </div>
+            </div>
+          
+           <div class="form-group row">
+           <label class="col-sm-3 col-form-label" for="Venue">Venue</label>
    			<div class="col-sm-9">
         
-        	<select name="Venue" id="Venue" th:field="*{Venue}" class="form-control">
-            <option th:value="KOMPLEKSSUKAN">KOMPLEKS SUKAN</option>
-            <option th:value="DEWANCENSELOR">DEWAN CENSELOR</option>
-            <option th:value="DEWANKULIAH" style="width: fit-content; padding: 0;">DEWAN KULIAH</option>
+        	<select name="Venue" id="Venue" th:field="*{Venue}">
+            <option th:value="KompleksSukan">Kompleks Sukan</option>
+            <option th:value="DewanCenselor">Dewan Censelor</option>
+            <option th:value="DewanKuliah">Dewan Kuliah</option>
         	</select> 
     		</div>
-		</div>
+          </div>
           
           <div class="form-group row">
-  			<label class="col-sm-3 col-form-label" for="DeviceType">Device Type</label>
-  			<div class="col-sm-9">
-    		<select name="DeviceType" id="DeviceType" th:field="*{DeviceType}" class="form-control">
-      		<option th:value="MatricCardReader">Matric Card Reader</option>
-      		<option th:value="FingerprintReader" style="width: fit-content; padding: 0;">Fingerprint Reader</option>
-    		</select>
-  			</div>
-		</div>
-
-          
-          <!-- <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="Status">Status</label>
+            <label class="col-sm-3 col-form-label" for="DeviceType">Device Type</label>
             <div class="col-sm-9">
-              <input type="text" th:field="*{Status}" minlength="2" maxlength="256" class="form-control"
-                id="Status" />
+             <select name="DeviceType" id="DeviceType" th:field="*{DeviceType}">
+			<option th:value="MatricCardReader">Matric Card Reader</option>
+            <option th:value="FingerprintReader">Fingerprint Reader</option>
+			</select>
             </div>
-          </div> -->
+          </div>
           
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="subjectName">Subject Name</label>
             <div class="col-sm-9">
               <input type="text" th:field="*{examination.examinationId}" minlength="1" maxlength="256" class="form-control"
                 id="examinationId" />
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="matricNumber">Matric Number</label>
-            <div class="col-sm-9">
-              <input type="text" th:field="*{student.studentId}" minlength="1" maxlength="256" class="form-control"
-                id="studentId" />
             </div>
           </div>
           

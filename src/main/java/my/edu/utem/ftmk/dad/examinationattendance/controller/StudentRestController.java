@@ -46,6 +46,13 @@ public class StudentRestController {
 		return student;
 	}
 	
+	@GetMapping("/matric/{matricNo}")
+	public Student getStudentByMatricNo(@PathVariable String matricNo){
+
+		System.out.println("test lagi");
+		return studentRepository.getStudentByMatricNo(matricNo);
+	}
+	
 	@PostMapping()
 	public Student insertStudent(@RequestBody Student student) {
 		

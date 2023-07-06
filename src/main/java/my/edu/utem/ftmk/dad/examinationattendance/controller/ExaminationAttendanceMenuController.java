@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import my.edu.utem.ftmk.dad.examinationattendance.model.ExaminationAttendance;
@@ -100,11 +102,21 @@ public class ExaminationAttendanceMenuController {
 	
 	@GetMapping("/examinationattend/{examinationAttendanceId}")
 	public String getExaminationAttendance
-	(@PathVariable Integer examinationAttendanceId, Model model) {
+	(@PathVariable Integer examinationAttendanceId, Model model,
+			@RequestParam(name = "matricNo",required =false) String matricNo) {
 		
 		String pageTitle = "New Attendance";
 		ExaminationAttendance examinationattendance = 
 				new ExaminationAttendance();
+		
+		Student currentStudent = new Student();
+		if(!Strings.isBlank(matricNo)) {
+			
+			RestTemplate studentREST = new RestTemplate();
+			currentStudent = studentREST.getForObject
+					("http://localhost:8080/examinationattendance/api/students/matric/"+matricNo, Student.class);
+			examinationattendance.setStudent(currentStudent);
+		}
 		
 		//This block get examinationattendance to be updated
 		if(examinationAttendanceId > 0) {
@@ -133,7 +145,7 @@ public class ExaminationAttendanceMenuController {
 		//Attach value to pass to front end
 		model.addAttribute("examinationattends", examinationattendance);
 		model.addAttribute("examinationattend", pageTitle);
-		//model.addAttribute("student",studentList);
+		model.addAttribute("student",currentStudent);
 		
 		return "examinationattendanceinfo";
 	}
