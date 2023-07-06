@@ -125,7 +125,7 @@ public class ExaminationAttendanceMenuController {
 //		ResponseEntity<Venue[]> responseVenue = 
 //				restTemplateVenue.getForEntity("http://localhost:8080/examinationattendance/api/students", Student[].class);
 //		
-//		Student studentArray[] = responseStudent.getBody();	
+//		Venue venueArray[] = responseStudent.getBody();	
 //		
 //		// Parse an array to a list object
 //		List<Student> studentList = Arrays.asList(studentArray);
