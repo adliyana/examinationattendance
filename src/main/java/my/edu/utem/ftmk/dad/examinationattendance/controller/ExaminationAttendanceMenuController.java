@@ -121,9 +121,9 @@ public class ExaminationAttendanceMenuController {
 			pageTitle = "Edit Attendance";
 		}
 		
-//		RestTemplate restTemplateStudent = new RestTemplate();
-//		ResponseEntity<Student[]> responseStudent = 
-//				restTemplateStudent.getForEntity("http://localhost:8080/examinationattendance/api/students", Student[].class);
+//		RestTemplate restTemplateVenue = new RestTemplate();
+//		ResponseEntity<Venue[]> responseVenue = 
+//				restTemplateVenue.getForEntity("http://localhost:8080/examinationattendance/api/students", Student[].class);
 //		
 //		Student studentArray[] = responseStudent.getBody();	
 //		
