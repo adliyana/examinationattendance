@@ -35,24 +35,24 @@
     		<label class="col-sm-3 col-form-label" for="Venue">Venue</label>
    			<div class="col-sm-9">
         
-        	<select name="Venue" id="Venue" th:field="*{Venue}">
-            <option th:value="KompleksSukan">Kompleks Sukan</option>
-            <option th:value="DewanCenselor">Dewan Censelor</option>
-            <option th:value="DewanKuliah">Dewan Kuliah</option>
+        	<select name="Venue" id="Venue" th:field="*{Venue}" class="form-control">
+            <option th:value="KOMPLEKSSUKAN">KOMPLEKS SUKAN</option>
+            <option th:value="DEWANCENSELOR">DEWAN CENSELOR</option>
+            <option th:value="DEWANKULIAH" style="width: fit-content; padding: 0;">DEWAN KULIAH</option>
         	</select> 
     		</div>
 		</div>
           
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="DeviceType">Device Type</label>
-            <div class="col-sm-9">
-            
-			<select name="DeviceType" id="DeviceType" th:field="*{DeviceType}">
-			<option th:value="MatricCardReader">Matric Card Reader</option>
-            <option th:value="FingerprintReader">Fingerprint Reader</option>
-			</select>
-            </div>
-          </div>
+  			<label class="col-sm-3 col-form-label" for="DeviceType">Device Type</label>
+  			<div class="col-sm-9">
+    		<select name="DeviceType" id="DeviceType" th:field="*{DeviceType}" class="form-control">
+      		<option th:value="MatricCardReader">Matric Card Reader</option>
+      		<option th:value="FingerprintReader" style="width: fit-content; padding: 0;">Fingerprint Reader</option>
+    		</select>
+  			</div>
+		</div>
+
           
           <!-- <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="Status">Status</label>
