@@ -179,6 +179,7 @@ public class ExaminationAttendanceMenuController {
 		model.addAttribute("examinationattends", examinationattendance);
 		model.addAttribute("examinationattend", pageTitle);
 		model.addAttribute("examinations",examinationList);
+		model.addAttribute("student", currentStudent);
 		
 		return "examinationattendanceinfo";
 	}
