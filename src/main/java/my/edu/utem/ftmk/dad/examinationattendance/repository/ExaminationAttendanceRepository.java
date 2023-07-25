@@ -20,14 +20,22 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.ExaminationAttendance;
 public interface ExaminationAttendanceRepository 
 	extends JpaRepository<ExaminationAttendance, Long> {
 	
+	/**
+	 *  To find total students who attend the examination
+	 * @param ExaminationId
+	 * @return
+	 */
 	@Query(value = "SELECT * FROM examinationattendance"
 			+ " WHERE ExaminationId = :ExaminationId", nativeQuery = true)
-	public List<ExaminationAttendance> findExaminationId(@Param("ExaminationId")Long ExaminationId);
+	public List<ExaminationAttendance> findExaminationId
+	(@Param("ExaminationId")Long ExaminationId);
 	
+	// To find total students who does not attend the examination
 	@Query(value = "SELECT * FROM student s LEFT JOIN examinationattendance ea "
-					+"ON s.StudentId = ea.StudentId AND ea.ExaminationId = :ExaminationId"
-					+ " WHERE ea.ExaminationAttendanceId IS NULL", nativeQuery = true)
-	public List<Object[]> findStudentAbsent(@Param("ExaminationId")int ExaminationId);
-
-
+					+"ON s.StudentId = ea.StudentId AND ea.ExaminationId = "
+					+ ":ExaminationId"
+					+ " WHERE ea.ExaminationAttendanceId IS NULL", 
+					nativeQuery = true)
+	public List<Object[]> findStudentAbsent
+	(@Param("ExaminationId")int ExaminationId);
 }

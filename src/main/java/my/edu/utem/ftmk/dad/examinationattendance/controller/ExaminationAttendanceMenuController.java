@@ -24,9 +24,7 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.Subject;
 /**
  * This class represents Menu Controller for Examination Attendance
  * 
- * @author Adib Adliyana
  * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 @Controller
@@ -46,7 +44,7 @@ public class ExaminationAttendanceMenuController {
 	@GetMapping("/examinationattend/list")
 	public String getExaminationAttendance(Model model){
 		
-		//Get a list order types from the web service
+		//Get a list examination attendance from the web service
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<ExaminationAttendance[]> response = 
 				restTemplate.getForEntity(defaultURI, 
@@ -66,13 +64,14 @@ public class ExaminationAttendanceMenuController {
 	}
 	
 	/**
+	 * This method will update or add new attendance
 	 * 
-	 * @param examination_attendance
+	 * @param examinationattendance
 	 * @return
 	 */
 	@RequestMapping("/examinationattend/save")
-	public String updateExaminationAttendance(
-			@ModelAttribute ExaminationAttendance examinationattendance) {
+	public String updateExaminationAttendance
+	(@ModelAttribute ExaminationAttendance examinationattendance) {
 		
 		//Create a new RestTemplate
 		RestTemplate restTemplate = new RestTemplate();
@@ -83,17 +82,16 @@ public class ExaminationAttendanceMenuController {
 		
 		String examinationAttendanceResponse = "";
 		
+		// This block get examination attendance to be updated
 		if (examinationattendance.getExaminationAttendanceId() > 0) {
-			//This block update an new order type and
 			
 			//Send request as PUT
 			restTemplate.put(defaultURI, request, ExaminationAttendance.class);
 		} else {
-			//This block add a new attendance
 			
 			//send request as POST
-			examinationAttendanceResponse = restTemplate.postForObject
-					(defaultURI, request, String.class);
+			examinationAttendanceResponse = 
+				restTemplate.postForObject(defaultURI, request, String.class);
 		}
 		
 		System.out.println(examinationAttendanceResponse);
@@ -102,27 +100,42 @@ public class ExaminationAttendanceMenuController {
 		return "redirect:/examinationattend/list";
 	}
 	
+	/**
+	 * This method gets a report of the attendance by examinationId
+	 * 
+	 * @param examinationId
+	 * @return
+	 */
 	@GetMapping("/report/{examinationId}")
-	public String getExamination (@PathVariable Integer examinationId, Model model) {
+	public String getExamination 
+	(@PathVariable Integer examinationId, Model model) {
 		
 		String pageTitle = "Report Attendance";
 		
+		// REST template for students who attend the examination
 		RestTemplate restTemplateStudent = new RestTemplate();
-		ResponseEntity<ExaminationAttendance[]> responseStudent = restTemplateStudent.getForEntity
-				("http://localhost:8080/examinationattendance/api/examinationattends/report/" 
+		ResponseEntity<ExaminationAttendance[]> responseStudent =
+				restTemplateStudent.getForEntity
+				("http://localhost:8080/examinationattendance/api"
+						+ "/examinationattends/report/" 
 						+ examinationId,ExaminationAttendance[].class);
 				
 		ExaminationAttendance studentAttendance[] = responseStudent.getBody();
-		List<ExaminationAttendance> studentAttendances = Arrays.asList(studentAttendance);
+		List<ExaminationAttendance> studentAttendances = 
+				Arrays.asList(studentAttendance);
 		
+		// REST template for students who is absent for the examination
 		RestTemplate restTemplateStudentAbsent = new RestTemplate();
-		ResponseEntity<Student[]> responseStudentAbsent = restTemplateStudentAbsent.getForEntity
-				("http://localhost:8080/examinationattendance/api/examinationattends/report/absent/" 
+		ResponseEntity<Student[]> responseStudentAbsent = 
+				restTemplateStudentAbsent.getForEntity
+				("http://localhost:8080/examinationattendance/api"
+						+ "/examinationattends/report/absent/" 
 						+ examinationId,Student[].class);
 		
 		Student studentAbsent[] = responseStudentAbsent.getBody();
 		List<Student> studentAbsents = Arrays.asList(studentAbsent);
 		
+		// Attach value to pass to front end
 		model.addAttribute("studentAttendance", studentAttendances);
 		model.addAttribute("studentAbsent", studentAbsents);
 		model.addAttribute("pageTitle",pageTitle);
@@ -130,6 +143,12 @@ public class ExaminationAttendanceMenuController {
 		return "report";
 	}
 	
+	/**
+	 * This method gets an examination attendance
+	 * 
+	 * @param examinationId
+	 * @return
+	 */
 	@GetMapping("/examinationattend/{examinationAttendanceId}")
 	public String getExaminationAttendance
 	(@PathVariable Integer examinationAttendanceId, Model model,
@@ -140,6 +159,8 @@ public class ExaminationAttendanceMenuController {
 				new ExaminationAttendance();
 		
 		Student currentStudent = new Student();
+		
+		// This block add examination attendance based on  matric number
 		if(!Strings.isBlank(matricNo)) {
 			
 			RestTemplate studentREST = new RestTemplate();
@@ -147,21 +168,6 @@ public class ExaminationAttendanceMenuController {
 					("http://localhost:8080/examinationattendance/api/"
 							+ "students/matric/"+matricNo, Student.class);
 			examinationattendance.setStudent(currentStudent);
-		}
-		
-		//This block get examinationattendance to be updated
-		if(examinationAttendanceId > 0) {
-			
-			//Generate new URI and append examinationAttendanceId to it
-			String uri = defaultURI + "/" + examinationAttendanceId;
-			
-			//Get examinationattendance from the web service
-			RestTemplate restTemplate = new RestTemplate();
-			examinationattendance = restTemplate.getForObject
-					(uri, ExaminationAttendance.class);
-			
-			//Give a new title to the page
-			pageTitle = "Edit Attendance";
 		}
 		
 		RestTemplate restTemplateExamination = new RestTemplate();
@@ -182,20 +188,5 @@ public class ExaminationAttendanceMenuController {
 		model.addAttribute("student", currentStudent);
 		
 		return "examinationattendanceinfo";
-	}
-	
-	@RequestMapping("/examinationattend/delete/{examinationAttendanceId}")
-	public String deleteExaminationAttendance
-	(@PathVariable int examinationAttendanceId) {
-		
-		//Generate new URI, similar to the mapping in ExaminationAttendance
-		String uri = defaultURI + "/{examinationAttendanceId}";
-		
-		//Send a DELETE request and attach the value of ExaminationAttendanceId into URI
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.delete(uri, Map.of("examinationAttendanceId", 
-				Integer.toString(examinationAttendanceId)));
-		
-		return "redirect:/examinationattend/list";
 	}
 }

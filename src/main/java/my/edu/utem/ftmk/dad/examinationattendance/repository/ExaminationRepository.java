@@ -12,7 +12,7 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.Examination;
  * @author Syafiqah
  *
  */
-public interface ExaminationRepository extends JpaRepository<Examination, 
-Long> {
+public interface ExaminationRepository 
+	extends JpaRepository<Examination, Long> {
 
 }

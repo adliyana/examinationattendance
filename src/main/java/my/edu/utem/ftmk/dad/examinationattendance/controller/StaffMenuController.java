@@ -16,9 +16,7 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.Staff;
 /**
  * This class represents Menu Controller for Staff
  * 
- * @author Adib Adliyana
  * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 
@@ -35,14 +33,13 @@ public class StaffMenuController {
 	 * @param model
 	 * @return
 	 */
-	
 	@GetMapping("/staff/list")
 	public String getStaff(Model model){
 		
 		//Get a list staff from the web service
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Staff[]> response = restTemplate.getForEntity(defaultURI, 
-				Staff[].class);
+		ResponseEntity<Staff[]> response = 
+				restTemplate.getForEntity(defaultURI, Staff[].class);
 		
 		//Parse JSON data to array of object
 		Staff sTaffs[] = response.getBody();

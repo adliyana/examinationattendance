@@ -62,7 +62,6 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Check In Time</th>
             <th scope="col">Venue</th>
             <th scope="col">Device Type</th>
             <th scope="col">Status</th>
@@ -73,7 +72,6 @@
         <tbody>
           <tr th:each="examinationAttendance : ${examAttend}">
             <th scope="row">[[${examinationAttendance.examinationAttendanceId}]]</th>
-            <td>[[${examinationAttendance.checkInTime}]]</td>
             <td>[[${examinationAttendance.venue}]]</td>
             <td>[[${examinationAttendance.deviceType}]]</td>
             <td>[[${examinationAttendance.status}]]</td>

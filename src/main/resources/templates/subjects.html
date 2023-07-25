@@ -30,25 +30,6 @@
       </button>
     </div>
 
-    <!--  <div class="my-3">
-      <form th:action="@{/tutorials}">
-        <div class="row d-flex">
-          <div class="col-md-6 mt-2">
-            <div class="search">
-              <i class="fa fa-search"></i>
-              <input id="keyword" type="search" name="keyword" th:value="$
-              {keyword}" required class="form-control"
-                placeholder="Enter keyword">
-              <button type="submit" class="btn btn-secondary">Search</button>
-            </div>
-          </div>
-          <div class="col-md-6 mt-2">
-            <button id="btnClear" class="btn btn-info">Clear</button>
-          </div>
-        </div>
-      </form>
-    </div> -->
-
     <div th:if="${subJects.size() > 0}">
       <table class="table table-hover table-responsive-xl">
         <thead class="thead-light">
@@ -64,72 +45,15 @@
             <td>[[${subject.code}]]</td>
             <td>[[${subject.name}]]</td>
             <td>
-              <!-- A link to edit subject -->
-              <!--  <a th:href="@{'/subject/' + ${subject.subjectId}}" 
-              	title="Edit this subject"
-                class="fa-regular fa-pen-to-square icon-dark"></a>
-              &nbsp; -->
-              
-              <!-- A link to delete subject -->
-              <!-- <a th:href="@{'/subject/delete/' + ${subject.SubjectId}}" 
-              th:subjectId="${subject.subjectId}" id="btnDelete"
-                title="Delete this subject" 
-                class="fa-regular fa-trash-can icon-dark btn-delete"></a> -->
-
+    
             </td> 
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="" th:unless="${subJects.size() > 0}">
-      <span>No record found!</span>
-    </div>
-  </div>
-
-  <div class="modal fade text-center" id="confirmModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Delete Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <div class="modal-body">
-          <span id="confirmText"></span>
-        </div>
-
-        <div class="modal-footer">
-          <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div th:replace="fragments/footer :: footer"></div>
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $(".btn-delete").on("click", function (e) {
-        e.preventDefault();
-        link = $(this);
-
-        subjectId = link.attr("subjectId");
-        $("#yesBtn").attr("href", link.attr("href"));
-        $("#confirmText").html("Do you want to delete the  \<strong\>" + 
-        		subjectId + "\<\/strong\>?");
-        $("#confirmModal").modal();
-      });
-
-      $("#btnClear").on("click", function (e) {
-        e.preventDefault();
-        $("#keyword").text("");
-        window.location = "[[@{/subject/list}]]";
-      });
-    });
   </script>
 
 </body>

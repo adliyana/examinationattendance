@@ -23,8 +23,6 @@ import my.edu.utem.ftmk.dad.examinationattendance.repository.ExaminationAttendan
  * This class represents REST Controller for Examination Attendance
  * 
  * @author Adib Adliyana
- * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 @RestController
@@ -35,7 +33,9 @@ public class ExaminationAttendanceRestController {
 	private ExaminationAttendanceRepository examinationAttendanceRepository;
 	
 	/**
+	 * This method demonstrate a list of Examination Attendance
 	 * 
+	 * @return
 	 */
 	@GetMapping
 	public List<ExaminationAttendance> getExaminationAttendance(){
@@ -43,6 +43,13 @@ public class ExaminationAttendanceRestController {
 		return examinationAttendanceRepository.findAll();
 	}
 	
+	/**
+	 * This method demonstrate searching examination attendance by 
+	 * examinationAttendanceId
+	 * 
+	 * @param examinationAttendanceId
+	 * @return
+	 */
 	@GetMapping("{examinationAttendanceId}")
 	public ExaminationAttendance getExaminationAttendance
 	(@PathVariable long examinationAttendanceId){
@@ -54,16 +61,33 @@ public class ExaminationAttendanceRestController {
 		return examinationAttendance;
 	}
 	
+	/**
+	 * This method gets report of examination attendance  by examinationId
+	 * for student who attend the examination
+	 * 
+	 * @param examinationId
+	 * @return
+	 */
 	@GetMapping("/report/{examinationId}")
-	public List<ExaminationAttendance> findExaminationid(@PathVariable Long examinationId)
+	public List<ExaminationAttendance> findExaminationid
+	(@PathVariable Long examinationId)
 	{
 		return examinationAttendanceRepository.findExaminationId(examinationId);
 	}
 	
+	/**
+	 * This method gets report of examination attendance  by examinationId
+	 * for student who absent the examination
+	 * 
+	 * @param examinationId
+	 * @return
+	 */
 	@GetMapping("/report/absent/{examinationId}")
 	public List<Student> findStudentAbsent(@PathVariable int examinationId)
 	{
-		List<Object[]> queryResult = examinationAttendanceRepository.findStudentAbsent(examinationId);
+		List<Object[]> queryResult = examinationAttendanceRepository.
+				findStudentAbsent(examinationId);
+		
 	    List<Student> studentList = new ArrayList<>();
 
 	    for (Object[] row : queryResult) {
@@ -75,33 +99,19 @@ public class ExaminationAttendanceRestController {
 	        student.setMatricNumber(studentMatricNo);
 	        student.setCourse(studentCourse);
 	        studentList.add(student);
-	
 	    }
-	    
 		return studentList;
 	}
-
-	
+	/**
+	 * This method demonstrate to add Examination Attendance
+	 * 
+	 * @param examinationAttendance
+	 * @return
+	 */
 	@PostMapping()
 	public ExaminationAttendance insertExaminationAttendance
 	(@RequestBody ExaminationAttendance examinationattendance) {
 		
 		return examinationAttendanceRepository.save(examinationattendance);
-	}
-	
-	@PutMapping()
-	public ExaminationAttendance updateExaminationAttendance
-	(@RequestBody ExaminationAttendance examinationAttendance) {
-		
-		return examinationAttendanceRepository.save(examinationAttendance);
-	}
-	
-	@DeleteMapping("{examinationAttendanceId}")
-	public ResponseEntity<HttpStatus> deleteExaminationAttendance
-	(@PathVariable long examinationAttendanceId){
-		
-		examinationAttendanceRepository.deleteById(examinationAttendanceId);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

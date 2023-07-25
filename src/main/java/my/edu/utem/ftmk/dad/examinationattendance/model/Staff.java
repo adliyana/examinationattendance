@@ -40,7 +40,7 @@ public class Staff {
 	private String position;
 	
 	@ManyToOne
-	@JoinColumn(name="subjectName")
+	@JoinColumn(name="subjectId")
 	private Subject subject;
 
 	public int getStaffId() {

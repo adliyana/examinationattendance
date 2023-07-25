@@ -21,10 +21,9 @@ import my.edu.utem.ftmk.dad.examinationattendance.repository.StudentRepository;
  * This class represents REST Controller for Student
  * 
  * @author Adib Adliyana
- * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
+
 @RestController
 @RequestMapping("/api/students")
 public class StudentRestController {
@@ -32,12 +31,23 @@ public class StudentRestController {
 	@Autowired
 	private StudentRepository studentRepository;
 	
+	/**
+	 * This method demonstrate list of Student
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public List<Student> getStudent(){
 		
 		return studentRepository.findAll();
 	}
 	
+	/**
+	 * This method demonstrate searching Student by studentId
+	 * 
+	 * @param studentId
+	 * @return
+	 */
 	@GetMapping("{studentId}")
 	public Student getStudent(@PathVariable long studentId){
 		
@@ -46,31 +56,16 @@ public class StudentRestController {
 		return student;
 	}
 	
+	/**
+	 * This method demonstrate to get Student Matric Number
+	 * 
+	 * @param matricNo
+	 * @return
+	 */
 	@GetMapping("/matric/{matricNo}")
 	public Student getStudentByMatricNo(@PathVariable String matricNo){
 
 		System.out.println("test lagi");
 		return studentRepository.getStudentByMatricNo(matricNo);
-	}
-	
-	@PostMapping()
-	public Student insertStudent(@RequestBody Student student) {
-		
-		return studentRepository.save(student);
-	}
-	
-	@PutMapping()
-	public Student updateStudent(@RequestBody Student student) {
-		
-		return studentRepository.save(student);
-	}
-	
-	@DeleteMapping("{studentId}")
-	public ResponseEntity<HttpStatus> deleteStudent
-	(@PathVariable long studentId){
-		
-		studentRepository.deleteById(studentId);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

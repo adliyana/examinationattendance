@@ -30,8 +30,8 @@ public class ExaminationAttendance {
 	@Column(name="examinationAttendanceId")
 	private int examinationAttendanceId;
 	
-	@Column(name="checkInTime")
-	private LocalDateTime checkInTime;
+//	@Column(name="checkInTime")
+//	private LocalDateTime checkInTime;
 	
 	@Column(name="venue")
 	private String venue;
@@ -58,13 +58,13 @@ public class ExaminationAttendance {
 		this.examinationAttendanceId = examinationAttendanceId;
 	}
 
-	public LocalDateTime getCheckInTime() {
-		return checkInTime;
-	}
-
-	public void setCheckInTime(LocalDateTime checkInTime) {
-		this.checkInTime = checkInTime;
-	}
+//	public LocalDateTime getCheckInTime() {
+//		return checkInTime;
+//	}
+//
+//	public void setCheckInTime() {
+//		this.checkInTime = checkInTime;
+//	}
 
 	public String getVenue() {
 		return venue;

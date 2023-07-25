@@ -13,9 +13,7 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.Subject;
 /**
  * This class represents Menu Controller for Subject
  * 
- * @author Adib Adliyana
  * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 
@@ -36,10 +34,10 @@ public class SubjectMenuController {
 	@GetMapping("/subject/list")
 	public String getSubject(Model model){
 		
-		//Get a list order types from the web service
+		//Get a list of subjects from the web service
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Subject[]> response = restTemplate.getForEntity
-				(defaultURI,Subject[].class);
+		ResponseEntity<Subject[]> response = 
+				restTemplate.getForEntity(defaultURI,Subject[].class);
 		
 		//Parse JSON data to array of object
 		Subject subJects[] = response.getBody();

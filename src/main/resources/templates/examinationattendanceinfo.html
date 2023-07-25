@@ -46,15 +46,23 @@
 
         <div class="p-3">
         
-<!--         <div class="form-group row"> -->
-<!--             <label class="col-sm-3 col-form-label" for="CheckInTime">Check In Time</label> -->
-<!--             <div class="col-sm-9"> -->
-<!--               <input type="text" th:field="*{CheckInTime}" minlength="2" maxlength="256" class="form-control" -->
-<!--                 id="CheckInTime" /> -->
-<!--             </div> -->
+       	<!-- <div>
+       			<div class="form-group row">
+       			<label class="col-sm-3 col-form-label" for="checkInTime">Check In Time</label>
+       			<div class="col-sm-9">
+    			<input type="text" id="checkInTime" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}" readonly />
+  			
+  		</div> -->
         
-          <div class="form-group row">
-          
+        <!-- <div class="form-group row">
+            <label class="col-sm-3 col-form-label" for="CheckInTime">Check In Time</label>
+            <div class="col-sm-9">
+              <input type="text" th:field="*{CheckInTime}" minlength="2" maxlength="256" class="form-control"
+                id="CheckInTime" />
+            </div> -->
+        
+          		<div class="form-group row">
+
                <label class="col-sm-3 col-form-label" for="StudentId">Matric Card</label>
                         <div class="col-sm-9">
                             <input type="text" th:field="*{Student.MatricNumber}" required minlength="1"
@@ -71,14 +79,19 @@
             </div>
             </div>
           
+          <label>
+				<input type="radio" required name="attendance" value="Hadir" th:field="*{Status}" th:checked="${Status == 'Hadir'}">
+						  Hadir
+						</label>
+          
            <div class="form-group row">
            <label class="col-sm-3 col-form-label" for="Venue">Venue</label>
    			<div class="col-sm-9">
         
         	<select name="Venue" id="Venue" th:field="*{Venue}">
-            <option th:value="KompleksSukan">Kompleks Sukan</option>
-            <option th:value="DewanCenselor">Dewan Censelor</option>
-            <option th:value="DewanKuliah">Dewan Kuliah</option>
+            <option th:value="KOMPLEKSSUKAN">KOMPLEKS SUKAN</option>
+            <option th:value="DEWANCENSELOR">DEWAN CENSELOR</option>
+            <option th:value="DEWANKULIAH">DEWAN KULIAH</option>
         	</select> 
     		</div>
           </div>
@@ -86,7 +99,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label" for="DeviceType">Device Type</label>
             <div class="col-sm-9">
-             <select name="DeviceType" id="DeviceType" th:field="*{DeviceType}">
+             <select name="DeviceType" id="DeviceType" th:field="*{DeviceType}" style="white-space: pre-line;">
 			<option th:value="MatricCardReader">Matric Card Reader</option>
             <option th:value="FingerprintReader">Fingerprint Reader</option>
 			</select>

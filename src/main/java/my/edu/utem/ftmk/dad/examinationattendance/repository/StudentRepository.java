@@ -18,6 +18,7 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
+	// To retrieve all value from student by matric number
 	@Query(value= "select * from student where MatricNumber = :matricNo",
 			nativeQuery = true)
 	public Student getStudentByMatricNo(@Param("matricNo") String matricNo);

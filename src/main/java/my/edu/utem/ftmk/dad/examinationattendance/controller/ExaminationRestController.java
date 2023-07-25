@@ -21,8 +21,6 @@ import my.edu.utem.ftmk.dad.examinationattendance.repository.ExaminationReposito
  * This class represents REST Controller for Examination
  * 
  * @author Adib Adliyana
- * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 
@@ -33,40 +31,29 @@ public class ExaminationRestController {
 	@Autowired
 	private ExaminationRepository examinationRepository;
 	
+	/**
+	 * This method demonstrate a list of Examination
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public List<Examination> getExamination(){
 		
 		return examinationRepository.findAll();
 	}
 	
-	// examinationId
+	/**
+	 * This method demonstrate searching examination by examinationId
+	 * 
+	 * @param examinationId
+	 * @return
+	 */
 	@GetMapping("{examinationId}")
 	public Examination getExamination(@PathVariable long examinationId){
 		
-		Examination examination = examinationRepository.findById(examinationId)
-				.get();
+		Examination examination = examinationRepository.
+				findById(examinationId).get();
 		
 		return examination;
-	}
-	
-	@PostMapping()
-	public Examination insertExamination(@RequestBody Examination examination) {
-		
-		return examinationRepository.save(examination);
-	}
-	
-	@PutMapping()
-	public Examination updateExamination(@RequestBody Examination examination) {
-		
-		return examinationRepository.save(examination);
-	}
-	
-	@DeleteMapping("{examinationId}")
-	public ResponseEntity<HttpStatus> deleteExamination(@PathVariable long 
-			examinationId){
-		
-		examinationRepository.deleteById(examinationId);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

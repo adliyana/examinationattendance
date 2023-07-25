@@ -19,9 +19,7 @@ import my.edu.utem.ftmk.dad.examinationattendance.model.Student;
 /**
  * This class represents Menu Controller for Student
  * 
- * @author Adib Adliyana
  * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 
@@ -38,14 +36,13 @@ public class StudentMenuController {
 	 * @param model
 	 * @return
 	 */
-	
 	@GetMapping("/student/list")
 	public String getStudent(Model model){
 		
-		//Get a list order types from the web service
+		//Get a list of students from the web service
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Student[]> response = restTemplate.getForEntity
-				(defaultURI, Student[].class);
+		ResponseEntity<Student[]> response = 
+				restTemplate.getForEntity(defaultURI, Student[].class);
 		
 		//Parse JSON data to array of object
 		Student stuDents[] = response.getBody();

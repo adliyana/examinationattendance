@@ -21,8 +21,6 @@ import my.edu.utem.ftmk.dad.examinationattendance.repository.SubjectRepository;
  * This class represents REST Controller for Subject
  * 
  * @author Adib Adliyana
- * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 
@@ -33,12 +31,23 @@ public class SubjectRestController {
 	@Autowired
 	private SubjectRepository subjectRepository;
 	
+	/**
+	 * This method demonstrate a list of Subject
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public List<Subject> getSubject(){
 		
 		return subjectRepository.findAll();
 	}
 	
+	/**
+	 * This method demonstrate searching subject by subjectId
+	 * 
+	 * @param SubjectId
+	 * @return
+	 */
 	@GetMapping("{subjectId}")
 	public Subject getSubject(@PathVariable long subjectId){
 		
@@ -47,21 +56,26 @@ public class SubjectRestController {
 		return subject;
 	}
 	
+	/**
+	 * This method demonstrate to add Subject
+	 * 
+	 * @param subject
+	 * @return
+	 */
 	@PostMapping()
 	public Subject insertSubject(@RequestBody Subject subject) {
 		
 		return subjectRepository.save(subject);
 	}
 	
-	@PutMapping()
-	public Subject updateSubject(@RequestBody Subject subject) {
-		
-		return subjectRepository.save(subject);
-	}
-	
+	/**
+	 * This method demonstrate a delete for Subject
+	 * 
+	 * @param SubjectId
+	 * @return
+	 */
 	@DeleteMapping("{subjectId}")
-	public ResponseEntity<HttpStatus> deleteSubject(@PathVariable 
-			long subjectId){
+	public ResponseEntity<HttpStatus> deleteSubject(@PathVariable long subjectId){
 		
 		subjectRepository.deleteById(subjectId);
 		

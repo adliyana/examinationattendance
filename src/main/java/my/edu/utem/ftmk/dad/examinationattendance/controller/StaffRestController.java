@@ -20,8 +20,6 @@ import my.edu.utem.ftmk.dad.examinationattendance.repository.StaffRepository;
  * This class represents REST Controller for Staff
  * 
  * @author Adib Adliyana
- * @author Rose Asnarizza
- * @author Syafiqah
  *
  */
 
@@ -32,12 +30,23 @@ public class StaffRestController {
 	@Autowired
 	private StaffRepository staffRepository;
 	
+	/**
+	 * This method demonstrate a list of Staff
+	 * 
+	 * @return
+	 */
 	@GetMapping
 	public List<Staff> getStaff(){
 		
 		return staffRepository.findAll();
 	}
 	
+	/**
+	 * This method demonstrate searching staff by staffId
+	 * 
+	 * @param staffId
+	 * @return
+	 */
 	@GetMapping("{staffId}")
 	public Staff getStaff(@PathVariable long staffId){
 		
@@ -46,22 +55,26 @@ public class StaffRestController {
 		return staff;
 	}
 	
+	/**
+	 * This method demonstrate to add Staff
+	 * 
+	 * @param staff
+	 * @return
+	 */
 	@PostMapping()
 	public Staff insertStaff(@RequestBody Staff staff) {
 		
 		return staffRepository.save(staff);
 	}
 	
+	/**
+	 * This method demonstrate an update of Staff
+	 * 
+	 * @param staff
+	 * @return
+	 */
 	@PutMapping()
 	public Staff updateStaff(@RequestBody Staff staff) {
 		return staffRepository.save(staff);
-	}
-	
-	@DeleteMapping("{staffId}")
-	public ResponseEntity<HttpStatus> deleteStaff(@PathVariable long staffId) {
-		
-		staffRepository.deleteById(staffId);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
